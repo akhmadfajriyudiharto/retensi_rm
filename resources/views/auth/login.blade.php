@@ -26,7 +26,7 @@ $configData = Helper::appClasses();
     <!-- /Left Text -->
     <div class="d-none d-lg-flex col-lg-8 p-0">
       <div class="auth-cover-bg auth-cover-bg-color d-flex justify-content-center align-items-center">
-        <img src="{{ asset('assets/img/illustrations/auth-login-illustration-'.$configData['style'].'.png') }}" alt="auth-login-cover" class="my-5 auth-illustration" data-app-light-img="illustrations/auth-login-illustration-light.png" data-app-dark-img="illustrations/auth-login-illustration-dark.png">
+        <img src="{{ asset('assets/img/illustrations/medical.png') }}" alt="auth-login-covessr" class="my-5 auth-illustration" data-app-light-img="illustrations/medical.png" data-app-dark-img="illustrations/medical.png">
 
         <img src="{{ asset('assets/img/illustrations/bg-shape-image-'.$configData['style'].'.png') }}" alt="auth-login-cover" class="platform-bg" data-app-light-img="illustrations/bg-shape-image-light.png" data-app-dark-img="illustrations/bg-shape-image-dark.png">
       </div>
@@ -36,8 +36,8 @@ $configData = Helper::appClasses();
     <!-- Login -->
     <div class="d-flex col-12 col-lg-4 align-items-center authentication-bg p-sm-12 p-6">
       <div class="w-px-400 mx-auto mt-12 pt-5">
-        <h4 class="mb-1">Welcome to {{ config('variables.templateName') }}! 👋</h4>
-        <p class="mb-6">Please sign-in to your account and start the adventure</p>
+        <h4 class="mb-1">Selamat Datang di {{ config('variables.templateName') }} RSHU Surabaya! 👋</h4>
+        <p class="mb-6">Silahkan masuk menggunakan akun anda</p>
 
         @if (session('status'))
           <div class="alert alert-success mb-1 rounded-0" role="alert">
@@ -75,49 +75,18 @@ $configData = Helper::appClasses();
               <div class="form-check mb-0 ms-2">
                 <input class="form-check-input" type="checkbox" id="remember-me" name="remember" {{ old('remember') ? 'checked' : '' }}>
                 <label class="form-check-label" for="remember-me">
-                  Remember Me
+                  Ingat Saya
                 </label>
               </div>
               @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}">
-                  <p class="mb-0">Forgot Password?</p>
+                  <p class="mb-0">Lupa Password?</p>
                 </a>
               @endif
             </div>
           </div>
-          <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+          <button class="btn btn-primary d-grid w-100" type="submit">Masuk</button>
         </form>
-
-        <p class="text-center">
-          <span>New on our platform?</span>
-          @if (Route::has('register'))
-            <a href="{{ route('register') }}">
-              <span>Create an account</span>
-            </a>
-          @endif
-        </p>
-
-        <div class="divider my-6">
-          <div class="divider-text">or</div>
-        </div>
-
-        <div class="d-flex justify-content-center">
-          <a href="javascript:;" class="btn btn-sm btn-icon rounded-pill btn-text-facebook me-1_5">
-            <i class="tf-icons ti ti-brand-facebook-filled"></i>
-          </a>
-
-          <a href="javascript:;" class="btn btn-sm btn-icon rounded-pill btn-text-twitter me-1_5">
-            <i class="tf-icons ti ti-brand-twitter-filled"></i>
-          </a>
-
-          <a href="javascript:;" class="btn btn-sm btn-icon rounded-pill btn-text-github me-1_5">
-            <i class="tf-icons ti ti-brand-github-filled"></i>
-          </a>
-
-          <a href="javascript:;" class="btn btn-sm btn-icon rounded-pill btn-text-google-plus">
-            <i class="tf-icons ti ti-brand-google-filled"></i>
-          </a>
-        </div>
       </div>
     </div>
     <!-- /Login -->
