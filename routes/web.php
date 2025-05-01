@@ -1,31 +1,34 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Helpers\Menu;
 use App\Http\Controllers\language\LanguageController;
-use App\Http\Controllers\pages\HomePage;
-use App\Http\Controllers\pages\Page2;
-use App\Http\Controllers\pages\MiscError;
-use App\Http\Controllers\authentications\LoginBasic;
-use App\Http\Controllers\authentications\RegisterBasic;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 
 Route::middleware([
-  'auth:sanctum',
+  'auth:web',
   config('jetstream.auth_session'),
   'verified',
 ])->group(function () {
-  Route::get('/dashboard', function () {
-    return view('/');
-  })->name('dashboard');
 
-  // Main Page Route
-  Route::get('/', [HomePage::class, 'index'])->name('pages-home');
-  Route::get('/page-2', [Page2::class, 'index'])->name('pages-page-2');
+    $menuFile = base_path('resources/menu/verticalMenu.json');
 
-  // locale
-  Route::get('/lang/{locale}', [LanguageController::class, 'swap']);
-  Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-error');
+    // Validasi apakah file menu ada
+    if (file_exists($menuFile)) {
+        $verticalMenuJson = file_get_contents($menuFile);
+        $verticalMenuData = json_decode($verticalMenuJson);
 
-  // authentication
-  Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
-  Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');
+        if ($verticalMenuData && isset($verticalMenuData->menu) && is_array($verticalMenuData->menu)) {
+            Menu::setRouteMenu($verticalMenuData->menu);
+        } else {
+            Log::error("Invalid or malformed JSON in menu file: $menuFile");
+        }
+    } else {
+        Log::error("Menu file not found: $menuFile");
+    }
+
+    Route::get('/test', [\App\Http\Controllers\pages\HomePage::class, 'index']);
+    Route::get('/pages/misc-error', ['App\Http\Controllers\pages\MiscError', 'index'])->name('pages-misc-error');
 });
+// locale
+Route::get('/lang/{locale}', [LanguageController::class, 'swap']);

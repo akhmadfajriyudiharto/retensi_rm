@@ -1,37 +1,39 @@
 {
-  "menu": [
-    {
-      "url": "/",
-      "name": "Home",
-      "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "pages-home"
-    },
-    {
-      "url": "page-2",
-      "icon": "menu-icon tf-icons ti ti-file",
-      "name": "Page 2",
-      "slug": "pages-page-2"
-    },
-    {
-      "url": "pages/misc-error",
-      "name": "Error",
-      "icon": "menu-icon tf-icons ti ti-alert-triangle",
-      "slug": "pages-misc-error",
-      "target": "_blank"
-    },
-    {
-      "url": "auth/login-basic",
-      "name": "Login",
-      "icon": "menu-icon tf-icons ti ti-login",
-      "slug": "auth-login-basic",
-      "target": "_blank"
-    },
-    {
-      "url": "auth/register-basic",
-      "name": "Register",
-      "icon": "menu-icon tf-icons ti ti-user",
-      "slug": "auth-register-basic",
-      "target": "_blank"
-    }
-  ]
-}
+    "menu": [
+      {
+        "url": "",
+        "name": "Home",
+        "controller": ["\\App\\Http\\Controllers\\pages\\HomePage", "index"],
+        "icon": "menu-icon tf-icons ti ti-smart-home",
+        "slug": "admin"
+      },
+      {
+          "name": "Sistem Admin",
+          "icon": "menu-icon tf-icons ti ti-database",
+          "slug": ["admin.roles","admin.users","admin.activity-log"],
+          "submenu": [
+              {
+                  "url": "admin/roles",
+                  "icon": "menu-icon tf-icons ti ti-circle",
+                  "name": "Role",
+                  "controller": ["\\App\\Http\\Controllers\\admin\\RoleController", "index"],
+                  "slug": "admin.roles"
+              },
+              {
+                  "url": "admin/users",
+                  "icon": "menu-icon tf-icons ti ti-circle",
+                  "name": "User",
+                  "controller": ["\\App\\Http\\Controllers\\admin\\UserController", "index"],
+                  "slug": "admin.users"
+              },
+              {
+                  "url": "admin/activity-log",
+                  "icon": "menu-icon tf-icons ti ti-circle",
+                  "name": "Activity Log",
+                  "controller": ["\\App\\Http\\Controllers\\admin\\ActivityLogController", "index"],
+                  "slug": "admin.activity-log"
+              }
+          ]
+      }
+    ]
+  }

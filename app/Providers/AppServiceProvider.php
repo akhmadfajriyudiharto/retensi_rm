@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Vite;
 
@@ -20,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
    */
   public function boot(): void
   {
+    // Berikan semua izin kepada pengguna dengan peran Super Admin
+    Gate::before(function ($user, $ability) {
+        return $user->hasRole('Super Admin') ? true : null;
+    });
     Vite::useStyleTagAttributes(function (?string $src, string $url, ?array $chunk, ?array $manifest) {
       if ($src !== null) {
         return [
