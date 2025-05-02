@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kasus;
+use App\Models\Layanan;
 use Yajra\DataTables\Facades\DataTables;
 
 class KasusController extends Controller
@@ -19,31 +20,27 @@ class KasusController extends Controller
                 'type'      => 'text',
                 'rule'      => 'required|string|max:255'
             ],
-            'aktif_rj' => [
-                'name'      => 'Masa Aktif Rawat Jalan (Tahun)',
+            'layanan_id' => [
+                'name'      => 'Jenis Layanan',
+                'type'      => 'select',
+                'rule'      => 'required',
+                'isSearch'  => false,
+                'options'   => Layanan::pluck('nama', 'id')->all()
+            ],
+            'aktif' => [
+                'name'      => 'Masa Aktif (Tahun)',
                 'type'      => 'text',
                 'rule'      => 'required|numeric|max:100'
             ],
-            'inaktif_rj' => [
-                'name'      => 'Masa Inaktif Rawat Jalan (Tahun)',
-                'type'      => 'text',
-                'rule'      => 'required|numeric|max:100'
-            ],
-            'aktif_ri' => [
-                'name'      => 'Masa Aktif Rawat Inap (Tahun)',
-                'type'      => 'text',
-                'rule'      => 'required|numeric|max:100'
-            ],
-            'inaktif_ri' => [
-                'name'      => 'Masa Inaktif Rawat Inap (Tahun)',
+            'inaktif' => [
+                'name'      => 'Masa Inaktif (Tahun)',
                 'type'      => 'text',
                 'rule'      => 'required|numeric|max:100'
             ],
             'deskripsi' => [
                 'name'      => 'Informasi Lain',
                 'type'      => 'text',
-                'rule'      => 'string|max:255',
-                'isTable'    => false
+                'rule'      => 'nullable|string|max:255'
             ],
         ];
         $pageSetting = [
@@ -53,20 +50,15 @@ class KasusController extends Controller
             'fields'         => $fields
         ];
         if (request()->ajax()) {
-            $data = Kasus::select(['id', 'nama', 'aktif_rj', 'inaktif_rj', 'aktif_ri', 'inaktif_ri', 'deskripsi']);
+            $data = Kasus::select(['kasuses.id', 'kasuses.nama', 'layanans.nama as layanan_id', 'aktif', 'inaktif', 'kasuses.deskripsi'])
+                        ->join('layanans', 'layanans.id', 'kasuses.layanan_id');
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->editColumn('aktif_rj', function ($row) {
-                    return $row->aktif_rj . ' Tahun';
+                ->editColumn('aktif', function ($row) {
+                    return $row->aktif . ' Tahun';
                 })
-                ->editColumn('inaktif_rj', function ($row) {
-                    return $row->inaktif_rj . ' Tahun';
-                })
-                ->editColumn('aktif_ri', function ($row) {
-                    return $row->aktif_ri . ' Tahun';
-                })
-                ->editColumn('inaktif_ri', function ($row) {
-                    return $row->inaktif_ri . ' Tahun';
+                ->editColumn('inaktif', function ($row) {
+                    return $row->inaktif . ' Tahun';
                 })
                 ->addColumn('action', function($row){
                     $id = $row->id;
