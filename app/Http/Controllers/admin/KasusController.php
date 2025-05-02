@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\kasus;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Models\Role;
+use App\Models\Kasus;
 use Yajra\DataTables\Facades\DataTables;
 
 class KasusController extends Controller
@@ -45,7 +42,7 @@ class KasusController extends Controller
             'deskripsi' => [
                 'name'      => 'Informasi Lain',
                 'type'      => 'text',
-                'rule'      => 'required|string|max:255',
+                'rule'      => 'string|max:255',
                 'isTable'    => false
             ],
         ];

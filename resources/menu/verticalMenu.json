@@ -10,7 +10,7 @@
       {
           "name": "Master",
           "icon": "menu-icon tf-icons ti ti-database",
-          "slug": ["admin.kasus"],
+          "slug": ["admin.kasus", "admin.layanan"],
           "submenu": [
               {
                   "url": "admin/kasus",
@@ -18,6 +18,13 @@
                   "name": "Kasus",
                   "controller": ["\\App\\Http\\Controllers\\admin\\KasusController", "index"],
                   "slug": "admin.kasus"
+              },
+              {
+                  "url": "admin/layanan",
+                  "icon": "menu-icon tf-icons ti ti-circle",
+                  "name": "layanan",
+                  "controller": ["\\App\\Http\\Controllers\\admin\\LayananController", "index"],
+                  "slug": "admin.layanan"
               }
           ]
       },
