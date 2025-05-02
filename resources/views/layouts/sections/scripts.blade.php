@@ -15,6 +15,7 @@
 <!-- END: Page Vendor JS-->
 <!-- BEGIN: Theme JS-->
 @vite(['resources/assets/js/main.js'])
+@stack('vendor-script')
 
 <!-- END: Theme JS-->
 <!-- Pricing Modal JS-->
@@ -22,6 +23,7 @@
 <!-- END: Pricing Modal JS-->
 <!-- BEGIN: Page JS-->
 @yield('page-script')
+@stack('page-script')
 <!-- END: Page JS-->
 
 @stack('modals')

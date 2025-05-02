@@ -64,6 +64,7 @@ $container = (isset($configData['contentLayout']) && $configData['contentLayout'
             @endif
 
             @yield('content')
+            @stack('content')
 
           </div>
           <!-- / Content -->

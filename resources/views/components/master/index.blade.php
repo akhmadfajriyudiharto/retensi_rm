@@ -9,9 +9,9 @@
   'resources/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.scss',
   'resources/assets/vendor/libs/select2/select2.scss',
   'resources/assets/vendor/libs/sweetalert2/sweetalert2.scss',
-  'resources/assets/vendor/libs/leaflet/leaflet.scss',
-  'resources/assets/vendor/libs/leaflet/leaflet-draw.scss',
-  'resources/assets/vendor/libs/ckeditor5/ckeditor5.scss'
+//   'resources/assets/vendor/libs/leaflet/leaflet.scss',
+//   'resources/assets/vendor/libs/leaflet/leaflet-draw.scss',
+//   'resources/assets/vendor/libs/ckeditor5/ckeditor5.scss'
 ])
 @endsection
 
@@ -27,9 +27,9 @@
         'resources/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js',
         'resources/assets/vendor/libs/select2/select2.js',
         'resources/assets/vendor/libs/sweetalert2/sweetalert2.js',
-        'resources/assets/vendor/libs/leaflet/leaflet.js',
-        'resources/assets/vendor/libs/leaflet/leaflet-draw.js',
-        'resources/assets/vendor/libs/ckeditor5/ckeditor5.js'
+        // 'resources/assets/vendor/libs/leaflet/leaflet.js',
+        // 'resources/assets/vendor/libs/leaflet/aw.js',
+        // 'resources/assets/vendor/libs/ckeditor5/ckeditor5.js'
     ];
     if (isset($pageSetting['isTree']) && $pageSetting['isTree']) {
         $vendorJs[] = 'resources/assets/vendor/libs/@kanety/jquery-simple-tree-table.js';
