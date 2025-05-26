@@ -8,7 +8,7 @@
         "slug": "admin"
       },
       {
-          "name": "Master",
+          "name": "Referensi",
           "icon": "menu-icon tf-icons ti ti-database",
           "slug": ["admin.kasus", "admin.layanan"],
           "submenu": [
