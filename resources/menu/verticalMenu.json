@@ -8,6 +8,20 @@
         "slug": "admin"
       },
       {
+          "name": "Data",
+          "icon": "menu-icon tf-icons ti ti-database",
+          "slug": ["admin.pasien", "admin.rekmed", "admin.rekmed.retensi", "admin.rekmed.pemusnahan"],
+          "submenu": [
+              {
+                  "url": "admin/pasien",
+                  "icon": "menu-icon tf-icons ti ti-circle",
+                  "name": "Pasien",
+                  "controller": ["\\App\\Http\\Controllers\\admin\\PasienController", "index"],
+                  "slug": "admin.pasien"
+              }
+          ]
+      },
+      {
           "name": "Referensi",
           "icon": "menu-icon tf-icons ti ti-database",
           "slug": ["admin.kasus", "admin.layanan"],
