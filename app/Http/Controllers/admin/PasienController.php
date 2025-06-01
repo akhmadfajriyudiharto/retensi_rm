@@ -64,6 +64,8 @@ class PasienController extends Controller
             'title'         => 'List Pasien',
             'model'         => \App\Models\Pasien::class,
             'routeName'     => 'admin.pasien',
+            'formWidth'     => 'fullscreen',
+            'fieldWidth'    => 6,
             'fields'         => $fields
         ];
         if (request()->ajax()) {
