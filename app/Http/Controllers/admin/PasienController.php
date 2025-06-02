@@ -18,7 +18,8 @@ class PasienController extends Controller
             'no_rm' => [
                 'name'      => 'No Rekam Medis',
                 'type'      => 'text',
-                'rule'      => 'required|string|max:20|unique:pasiens,no_rm'
+                'rule'      => 'required|string|max:20|unique:pasiens,no_rm',
+                'isTable'   => 'invisible'
             ],
             'nama' => [
                 'name'      => 'Nama',
@@ -28,7 +29,8 @@ class PasienController extends Controller
             'nik' => [
                 'name'      => 'NIK',
                 'type'      => 'text',
-                'rule'      => 'required|digits_between:16,17'
+                'rule'      => 'required|digits_between:16,17',
+                'isTable'   => 'invisible'
             ],
             'jenis_kelamin' => [
                 'name'      => 'Jenis Kelamin',
@@ -39,13 +41,13 @@ class PasienController extends Controller
             'tanggal_lahir' => [
                 'name'      => 'Tanggal Lahir',
                 'type'      => 'date',
-                'rule'      => 'required'
+                'rule'      => 'required',
+                'isSearch'  => false
             ],
             'alamat' => [
                 'name'      => 'Alamat',
                 'type'      => 'text',
-                'rule'      => 'nullable|string|max:255',
-                'isTable'   => false
+                'rule'      => 'nullable|string|max:255'
             ],
             'telepon' => [
                 'name'      => 'Telepon',
@@ -72,6 +74,9 @@ class PasienController extends Controller
             $data = Pasien::select(['pasiens.id', 'pasiens.no_rm', 'pasiens.nama', 'pasiens.nik', 'pasiens.jenis_kelamin', 'pasiens.tanggal_lahir', 'pasiens.alamat', 'pasiens.telepon', 'pasiens.email']);
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('nama', function ($row) {
+                    return $row->no_rm . '<br/>' . $row->nama . '<br/>' . $row->nik;
+                })
                 ->editColumn('jenis_kelamin', function ($row) {
                     return $row->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan';
                 })
@@ -82,7 +87,7 @@ class PasienController extends Controller
                     $id = $row->id;
                     return view('components.master.table-button', compact('id'));
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action','nama'])
                 ->make(true);
         }
         return view('components.master.index', compact('pageSetting'));
