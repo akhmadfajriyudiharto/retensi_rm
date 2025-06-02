@@ -10,7 +10,11 @@
                 <th>No</th>
                 @foreach ($tableFields as $item)
                     @if (isset($item['name']))
-                        <th>{{ $item['name'] }}</th>
+                        @if (isset($item['isTable']) && $item['isTable'] === 'invisible')
+                            <th style="display:none">{{ $item['name'] }}</th>
+                        @else
+                            <th>{{ $item['name'] }}</th>
+                        @endif
                     @endif
                 @endforeach
                 <th style="min-width: 95px">Aksi</th>

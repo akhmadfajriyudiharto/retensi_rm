@@ -19,7 +19,11 @@ use Illuminate\Support\Facades\Route;
             { data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, orderable: false},
             @foreach ($tableFields as $key => $item)
                 @if (isset($item['name']))
-                    { data: '{{$key}}', name: '{{$key}}' },
+                    @if (isset($item['isTable']) && $item['isTable'] === 'invisible')
+                        { data: '{{$key}}', name: '{{$key}}', visible: false },
+                    @else
+                        { data: '{{$key}}', name: '{{$key}}' },
+                    @endif
                 @endif
             @endforeach
             { data: 'action', name: 'action', orderable: false, searchable: false}
