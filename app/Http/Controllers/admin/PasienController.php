@@ -53,13 +53,13 @@ class PasienController extends Controller
                 'name'      => 'Telepon',
                 'type'      => 'text',
                 'rule'      => 'nullable|string|max:20|regex:/^[0-9]+$/',
-                'isTable'   => false
+                'isTable'   => 'invisible'
             ],
             'email' => [
                 'name'      => 'Email',
                 'type'      => 'text',
                 'rule'      => 'nullable|email:rfc,dns|max:50',
-                'isTable'   => false
+                'isTable'   => 'invisible'
             ],
         ];
         $pageSetting = [

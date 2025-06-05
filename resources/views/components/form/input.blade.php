@@ -1,4 +1,4 @@
-@props(['disabled' => false, 'label' => null, 'name' => null, 'type' => 'text', 'path' => null])
+@props(['disabled' => false, 'label' => null, 'name' => null, 'type' => 'text', 'path' => null, 'class' => null])
 <div class="mb-3">
     @if(isset($label))
         <x-form.label for="{{ $name }}" class="form-label" value="{{ $label }}" />

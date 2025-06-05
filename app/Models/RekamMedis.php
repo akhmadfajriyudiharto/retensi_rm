@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Models;
+
+use App\Traits\SpatieLogsActivity;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
+
+class RekamMedis extends Model
+{
+    use SpatieLogsActivity;
+
+    protected $guarded = ['id'];
+
+    protected static function booted()
+    {
+        static::creating(function ($rekamMedis) {
+            $kasus = Kasus::find($rekamMedis->kasus_id);
+
+            if ($kasus) {
+                $rekamMedis->batas_aktif = Carbon::parse($rekamMedis->tanggal_kunjungan)->addYears($kasus->aktif ?? 0);
+                $rekamMedis->batas_inaktif = Carbon::parse($rekamMedis->tanggal_kunjungan)->addYears($kasus->inaktif ?? 0);
+            }
+        });
+
+        static::created(function ($rekamMedis) {
+            RetensiRecord::create(['rekam_medis_id' => $rekamMedis->id, 'status' => RetensiRecord::STATUS_AKTIF]);
+        });
+    }
+}

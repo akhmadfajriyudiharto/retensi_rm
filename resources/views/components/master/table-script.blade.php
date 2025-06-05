@@ -110,7 +110,7 @@ use Illuminate\Support\Facades\Route;
         tableId.DataTable().column(name+':name').search(val, false, true).draw();
     }
 
-    $('input.dt-input').on('keyup', function () {
+    $('input.dt-input, select.dt-select').on('input change', function() {
         filterColumn($(this).attr('column-name'), $(this).val());
     });
 
