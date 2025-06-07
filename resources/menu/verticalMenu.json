@@ -10,7 +10,7 @@
       {
           "name": "Data",
           "icon": "menu-icon tf-icons ti ti-database",
-          "slug": ["admin.dokter", "admin.pasien", "admin.rekam-medis", "admin.retensi", "admin.rekmed.pemusnahan"],
+          "slug": ["admin.dokter", "admin.pasien", "admin.rekam-medis", "admin.retensi", "admin.pemusnahan"],
           "submenu": [
               {
                 "url": "admin/dokter",
@@ -39,6 +39,13 @@
                   "name": "Retensi",
                   "controller": ["\\App\\Http\\Controllers\\admin\\RekamMedisController", "retensi"],
                   "slug": "admin.retensi"
+              },
+              {
+                  "url": "admin/pemusnahan",
+                  "icon": "menu-icon tf-icons ti ti-circle",
+                  "name": "Pemusnahan",
+                  "controller": ["\\App\\Http\\Controllers\\admin\\RekamMedisController", "pemusnahan"],
+                  "slug": "admin.pemusnahan"
               }
           ]
       },

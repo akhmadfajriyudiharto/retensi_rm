@@ -27,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
         $blockedAbilities = [
             'admin.retensi.create',
             'admin.retensi.delete',
+            'admin.pemusnahan.create',
+            'admin.pemusnahan.delete',
         ];
 
         // Tolak jika termasuk dalam blocked
