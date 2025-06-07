@@ -3,7 +3,7 @@
 return [
   "creatorName" => "Pixinvent",
   "creatorUrl" => "https://github.com/akhmadfajriyudiharto",
-  "templateName" => "Retensi RM",
+  "templateName" => "RSHU Surabaya",
   "templateSuffix" => "Sistem Retensi Rekam Medis Rumah Sakit Husada Utama Surabaya",
   "templateVersion" => "2.0.0",
   "templateFree" => false,
