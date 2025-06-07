@@ -85,11 +85,12 @@ class PasienController extends Controller
                 })
                 ->addColumn('action', function($row){
                     $id = $row->id;
-                    return view('components.master.table-button', compact('id'));
+                    $frontButton = '<button class="btn btn-icon btn-text-info" data-bs-toggle="modal" data-bs-target="#modalRekamMedis" data-kt-action="rekam_medis" data-id="' . $id . '"><i class="tf-icons ti ti-report scaleX-n1-rtl ti-xs"></i></button>';
+                    return view('components.master.table-button', compact('id', 'frontButton'));
                 })
                 ->rawColumns(['action','nama'])
                 ->make(true);
         }
-        return view('components.master.index', compact('pageSetting'));
+        return view('admin.pasien.index', compact('pageSetting'));
     }
 }
