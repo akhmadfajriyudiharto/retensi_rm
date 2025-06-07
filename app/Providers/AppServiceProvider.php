@@ -23,6 +23,16 @@ class AppServiceProvider extends ServiceProvider
   {
     // Berikan semua izin kepada pengguna dengan peran Super Admin
     Gate::before(function ($user, $ability) {
+        // Daftar ability yang ingin dibatasi
+        $blockedAbilities = [
+            'admin.retensi.create',
+            'admin.retensi.delete',
+        ];
+
+        // Tolak jika termasuk dalam blocked
+        if (in_array($ability, $blockedAbilities)) {
+            return false;
+        }
         return $user->hasRole('Super Admin') ? true : null;
     });
     Vite::useStyleTagAttributes(function (?string $src, string $url, ?array $chunk, ?array $manifest) {
