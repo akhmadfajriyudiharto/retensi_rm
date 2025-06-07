@@ -46,4 +46,9 @@ class RetensiRecord extends Model
     {
         return $this->status ?? self::getAllStatus()[$this->status];
     }
+
+    public function rekamMedis()
+    {
+        return $this->belongsTo(RekamMedis::class);
+    }
 }

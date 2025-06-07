@@ -26,5 +26,21 @@ class RekamMedis extends Model
         static::created(function ($rekamMedis) {
             RetensiRecord::create(['rekam_medis_id' => $rekamMedis->id, 'status' => RetensiRecord::STATUS_AKTIF]);
         });
+
+        static::updating(function ($rekamMedis) {
+            if ($rekamMedis->isDirty('tanggal_kunjungan')) {
+                $kasus = Kasus::find($rekamMedis->kasus_id);
+
+                if ($kasus) {
+                    $rekamMedis->batas_aktif = Carbon::parse($rekamMedis->tanggal_kunjungan)->addYears($kasus->aktif ?? 0);
+                    $rekamMedis->batas_inaktif = Carbon::parse($rekamMedis->tanggal_kunjungan)->addYears($kasus->inaktif ?? 0);
+                }
+            }
+        });
+    }
+
+    public function retensiRecords()
+    {
+        return $this->hasMany(RetensiRecord::class);
     }
 }
