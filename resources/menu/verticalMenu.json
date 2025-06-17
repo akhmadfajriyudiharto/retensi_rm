@@ -8,6 +8,13 @@
         "slug": "admin"
       },
       {
+        "url": "admin/statistik",
+        "name": "Statistik",
+        "controller": ["\\App\\Http\\Controllers\\pages\\HomePage", "statistik"],
+        "icon": "menu-icon tf-icons ti ti-chart-bar",
+        "slug": "statistik"
+      },
+      {
           "name": "Data",
           "icon": "menu-icon tf-icons ti ti-database",
           "slug": ["admin.dokter", "admin.pasien", "admin.rekam-medis", "admin.retensi", "admin.pemusnahan"],
@@ -46,6 +53,27 @@
                   "name": "Pemusnahan",
                   "controller": ["\\App\\Http\\Controllers\\admin\\RekamMedisController", "pemusnahan"],
                   "slug": "admin.pemusnahan"
+              }
+          ]
+      },
+      {
+          "name": "Laporan",
+          "icon": "menu-icon tf-icons ti ti-clipboard-data",
+          "slug": ["admin.laporan-rekam-medis", "admin.laporan-berita-acara"],
+          "submenu": [
+              {
+                  "url": "admin/laporan-rekam-medis",
+                  "icon": "menu-icon tf-icons ti ti-circle",
+                  "name": "Laporan Rekam Medis",
+                  "controller": ["\\App\\Http\\Controllers\\admin\\KasusController", "index"],
+                  "slug": "admin.laporan-rekam-medis"
+              },
+              {
+                  "url": "admin/laporan-berita-acara",
+                  "icon": "menu-icon tf-icons ti ti-circle",
+                  "name": "Laporan Berita Acara",
+                  "controller": ["\\App\\Http\\Controllers\\admin\\BeritaAcaraPemusnahanController", "index"],
+                  "slug": "admin.laporan-berita-acara"
               }
           ]
       },

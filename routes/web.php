@@ -27,6 +27,7 @@ Route::middleware([
         Log::error("Menu file not found: $menuFile");
     }
 
+    Route::get('/admin/admin.laporan-berita-acara/cetak/{id}', [\App\Http\Controllers\admin\BeritaAcaraPemusnahanController::class, 'cetak'])->name('admin.laporan-berita-acara.cetak');
     Route::get('/test', [\App\Http\Controllers\pages\HomePage::class, 'index']);
     Route::get('/pages/misc-error', ['App\Http\Controllers\pages\MiscError', 'index'])->name('pages-misc-error');
 });

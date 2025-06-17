@@ -98,7 +98,7 @@ class FormModal extends Component
             return $item['type'] == 'file';
         });
         foreach ($fileFields as $key => $field) {
-            if($this->fieldDatas[$key]){
+            if(isset($this->fieldDatas[$key])){
                 try {
                     $filename = time() . '-' . uniqid() . '.' . $this->fieldDatas[$key]->getClientOriginalExtension();
 

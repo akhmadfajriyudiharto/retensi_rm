@@ -43,4 +43,34 @@ class RekamMedis extends Model
     {
         return $this->hasMany(RetensiRecord::class);
     }
+
+    public function latestRetensi()
+    {
+        return $this->hasOne(RetensiRecord::class)->latestOfMany();
+    }
+
+    public function beritaAcaras()
+    {
+        return $this->belongsToMany(BeritaAcaraPemusnahan::class, 'berita_acara_rekam_medis');
+    }
+
+    public function pasien()
+    {
+        return $this->belongsTo(Pasien::class);
+    }
+
+    public function layanan()
+    {
+        return $this->belongsTo(Layanan::class);
+    }
+
+    public function dokter()
+    {
+        return $this->belongsTo(Dokter::class);
+    }
+
+    public function kasus()
+    {
+        return $this->belongsTo(Kasus::class);
+    }
 }

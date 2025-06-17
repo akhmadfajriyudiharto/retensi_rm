@@ -58,7 +58,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Lokasi</th>
+                <th>Log</th>
                 <th>Deskripsi</th>
                 <th>Tipe Subjek</th>
                 <th>Subjek</th>
