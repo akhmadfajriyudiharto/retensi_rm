@@ -4,7 +4,7 @@ return [
   "creatorName" => "Pixinvent",
   "creatorUrl" => "https://github.com/akhmadfajriyudiharto",
   "templateName" => "RSHU Surabaya",
-  "templateSuffix" => "Sistem Retensi Rekam Medis Rumah Sakit Husada Utama Surabaya",
+  "templateSuffix" => "Sistem Alih Media Rekam Medis Rumah Sakit Husada Utama Surabaya",
   "templateVersion" => "2.0.0",
   "templateFree" => false,
   "templateDescription" => "Sistem Retensi Rekam Medis Rumah Sakit Husada Utama Surabaya",

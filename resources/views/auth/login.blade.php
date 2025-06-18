@@ -36,7 +36,7 @@ $configData = Helper::appClasses();
     <!-- Login -->
     <div class="d-flex col-12 col-lg-4 align-items-center authentication-bg p-sm-12 p-6">
       <div class="w-px-400 mx-auto mt-12 pt-5">
-        <h4 class="mb-1">Selamat Datang di {{ config('variables.templateName') }} RSHU Surabaya! 👋</h4>
+        <h4 class="mb-1">Selamat Datang di {{ config('variables.templateName') }}! 👋</h4>
         <p class="mb-6">Silahkan masuk menggunakan akun anda</p>
 
         @if (session('status'))
