@@ -56,7 +56,8 @@ class BeritaAcaraPemusnahanController extends Controller
             'kota_pemusnahan' => [
                 'name'      => 'Kota Pemusnahan',
                 'type'      => 'text',
-                'rule'      => 'required|string|max:50'
+                'rule'      => 'required|string|max:50',
+                'isTable'   => 'invisible'
             ],
             'tempat_pemusnahan' => [
                 'name'      => 'Tempat Pemusnahan',
@@ -106,7 +107,7 @@ class BeritaAcaraPemusnahanController extends Controller
                     return '<span class="badge bg-' . $badge . '"  style="white-space: normal;">' . $row->status . '</span>';
                 })
                 ->editColumn('tempat_pemusnahan', function ($row) {
-                    return $row->tempat_pemusnahan . '<br/>' . $row->alamat_pemusnahan;
+                    return $row->tempat_pemusnahan . '<br/>' . $row->alamat_pemusnahan . '<br/>' . $row->kota_pemusnahan;
                 })
                 ->addColumn('action', function($row){
                     $id = $row->id;

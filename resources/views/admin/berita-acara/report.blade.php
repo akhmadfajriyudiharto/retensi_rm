@@ -3,7 +3,7 @@
     @php
         $tanggal = \Carbon\Carbon::parse($beritaAcara->tanggal)->locale('id');
     @endphp
-    <div class="mt-5" style="text-align: justify;">
+    <div class="mt-5 mb-3" style="text-align: justify;">
         Pada hari ini {{ $tanggal->translatedFormat('l') }} tanggal {{ $tanggal->format('d') }}
         bulan {{ $tanggal->translatedFormat('F') }} tahun {{ $tanggal->format('Y') }} sesuai dengan
         Peraturan Penteri Kesehatan Republik Indonesia Nomor 269/MENKES/PER/III/2008 tentang Rekam
@@ -105,6 +105,45 @@
             @endforeach
         </table>
     </div>
+    <div style="page-break-before: always;">
+        @if (!isset($format) || $format == 'html')
+            <x-report.header-report></x-report.header-report>
+        @endif
+        <u><h5 style="font-size: 13pt;">Lampiran: Daftar Rekam Medis yang Dimusnahkan</h5></u>
+
+        <table class="mt-5" width="100%" cellspacing="0" cellpadding="5"
+           style="border-collapse: collapse; font-family: Arial, sans-serif; font-size: 14px;">
+
+        <thead>
+            <tr>
+                <th style="border: 1px solid #000;">No</th>
+                <th style="border: 1px solid #000;">No. RM</th>
+                <th style="border: 1px solid #000;">Nama Pasien</th>
+                <th style="border: 1px solid #000;">Tanggal Kunjungan</th>
+                <th style="border: 1px solid #000;">Dokter</th>
+                <th style="border: 1px solid #000;">Layanan</th>
+                <th style="border: 1px solid #000;">Diagnosa</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach ($beritaAcara->rekamMedis as $index => $rekamMedis)
+                <tr>
+                    <td style="border: 1px solid #000;">{{ $index + 1 }}</td>
+                    <td style="border: 1px solid #000;">{{ $rekamMedis->pasien->no_rm }}</td>
+                    <td style="border: 1px solid #000;">{{ $rekamMedis->pasien->nama }}</td>
+                    <td style="border: 1px solid #000;">
+                        {{ \Carbon\Carbon::parse($rekamMedis->tanggal_kunjungan)->translatedFormat('d F Y') }}
+                    </td>
+                    <td style="border: 1px solid #000;">{{ $rekamMedis->dokter->nama ?? '-' }}</td>
+                    <td style="border: 1px solid #000;">{{ $rekamMedis->layanan->nama ?? '-' }}</td>
+                    <td style="border: 1px solid #000;">{{ $rekamMedis->diagnosa ?? '-' }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    </div>
+
 
     @endsection
 </x-report.report>
