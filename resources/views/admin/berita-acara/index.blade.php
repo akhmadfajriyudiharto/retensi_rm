@@ -9,6 +9,7 @@
 
 @livewire('admin.berita-acara.saksi-modal')
 @livewire('admin.berita-acara.pilih-rekam-medis-modal')
+@livewire('admin.berita-acara.upload-bukti-modal')
 
 @endpush
 
@@ -27,6 +28,12 @@
                 }
             });
         });
+        $(document).on('click', '[data-kt-action="upload_bukti"]', function() {
+            const dataId = $(this).attr('data-id');
+
+            Livewire.dispatch('uploadBukti', [dataId]);
+        });
+
         $(document).on('click', '[data-kt-action="edit_saksi"]', function() {
             const dataId = $(this).attr('data-id');
 

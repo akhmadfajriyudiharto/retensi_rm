@@ -109,6 +109,16 @@ class BeritaAcaraPemusnahanController extends Controller
                 ->editColumn('tempat_pemusnahan', function ($row) {
                     return $row->tempat_pemusnahan . '<br/>' . $row->alamat_pemusnahan . '<br/>' . $row->kota_pemusnahan;
                 })
+                ->editColumn('file', function ($row) {
+                    $button = '';
+                    if ($row->file)
+                        $button .= '<a class="mb-4" href="' . asset('storage/' . $row->file) . '" target="_blank">Lihat</a>';
+
+                    if($row->status == 'dilaksanakan')
+                        $button .= '<button class="btn btn-icon btn-text-primary" data-bs-toggle="modal" data-bs-target="#modalUploadBukti" data-kt-action="upload_bukti" data-id="' . $row->id . '" title="Tambah/Edit Bukti Pemusnahan"><i class="tf-icons ti ti-upload scaleX-n1-rtl ti-xs"></i></button>';
+
+                    return $button;
+                })
                 ->addColumn('action', function($row){
                     $id = $row->id;
                     if (Gate::allows(Route::currentRouteName() . '.update')) {
@@ -130,7 +140,7 @@ class BeritaAcaraPemusnahanController extends Controller
 
                     return $buttons;
                 })
-                ->rawColumns(['action','ketua','tempat_pemusnahan','status'])
+                ->rawColumns(['action','ketua','tempat_pemusnahan','status','file'])
                 ->make(true);
         }
         return view('admin.berita-acara.index', compact('pageSetting'));
