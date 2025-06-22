@@ -90,12 +90,6 @@ class KasusController extends Controller
                 'isSearch'  => false,
                 'options'   => Layanan::pluck('nama', 'id')->all()
             ],
-            'total_rekam_medis' => [
-                'name'      => 'Total',
-                'type'      => 'text',
-                'rule'      => 'required|string|max:255',
-                'isSearch'  => false
-            ],
             'total_aktif' => [
                 'name'      => 'Aktif',
                 'type'      => 'text',
@@ -110,6 +104,12 @@ class KasusController extends Controller
             ],
             'total_dimusnahkan' => [
                 'name'      => 'Dimusnahkan',
+                'type'      => 'text',
+                'rule'      => 'required|string|max:255',
+                'isSearch'  => false
+            ],
+            'total_rekam_medis' => [
+                'name'      => 'Total',
                 'type'      => 'text',
                 'rule'      => 'required|string|max:255',
                 'isSearch'  => false
