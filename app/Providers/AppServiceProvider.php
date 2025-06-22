@@ -29,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
             'admin.retensi.delete',
             'admin.pemusnahan.create',
             'admin.pemusnahan.delete',
+            'admin.laporan-rekam-medis.create',
+            'admin.laporan-rekam-medis.action',
         ];
 
         // Tolak jika termasuk dalam blocked

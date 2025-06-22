@@ -65,7 +65,7 @@
                   "url": "admin/laporan-rekam-medis",
                   "icon": "menu-icon tf-icons ti ti-circle",
                   "name": "Laporan Rekam Medis",
-                  "controller": ["\\App\\Http\\Controllers\\admin\\KasusController", "index"],
+                  "controller": ["\\App\\Http\\Controllers\\admin\\KasusController", "rekapKasus"],
                   "slug": "admin.laporan-rekam-medis"
               },
               {

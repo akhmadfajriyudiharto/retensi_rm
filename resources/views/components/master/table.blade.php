@@ -1,4 +1,4 @@
-@props(['title' => null, 'tableFields' => [], 'searchFields' => [], 'routeName' => null, 'isTree' => false, 'pageDisplay' => 10])
+@props(['title' => null, 'tableFields' => [], 'searchFields' => [], 'routeName' => null, 'isTree' => false, 'pageDisplay' => 10, 'showActionColumn' => true])
 
 <!-- Datatable -->
 <div class="card card-action mb-12">
@@ -17,7 +17,9 @@
                         @endif
                     @endif
                 @endforeach
+                @if ($showActionColumn)
                 <th style="min-width: 95px">Aksi</th>
+                @endif
             </tr>
         </thead>
         </table>
@@ -41,5 +43,6 @@
         :tableFields="$tableFields"
         :title="$title"
         :isTree="$isTree"
-        :pageDisplay="$pageDisplay" />
+        :pageDisplay="$pageDisplay"
+        :showActionColumn="$showActionColumn" />
 @endpush

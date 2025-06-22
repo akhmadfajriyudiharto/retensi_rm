@@ -1,4 +1,4 @@
-@props(['routeName' => null, 'tableFields' => [], 'title' => null, 'isTree' => null, 'pageDisplay' => null])
+@props(['routeName' => null, 'tableFields' => [], 'title' => null, 'isTree' => null, 'pageDisplay' => null, 'showActionColumn' => true])
 
 @php
 use Illuminate\Support\Facades\Route;
@@ -26,7 +26,9 @@ use Illuminate\Support\Facades\Route;
                     @endif
                 @endif
             @endforeach
+            @if ($showActionColumn)
             { data: 'action', name: 'action', orderable: false, searchable: false}
+            @endif
         ],
         @if(isset($isTree) && $isTree)
         drawCallback: function( settings ) {

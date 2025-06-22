@@ -57,7 +57,8 @@ $searchFields = array_filter($pageSetting['fields'], function ($item) {
         :routeName="$pageSetting['routeName']"
         :title="$pageSetting['title']"
         :isTree="$pageSetting['isTree'] ?? false"
-        :pageDisplay="$pageSetting['pageDisplay'] ?? 10" />
+        :pageDisplay="$pageSetting['pageDisplay'] ?? 10"
+        :showActionColumn="isset($pageSetting['showActionColumn']) ? $pageSetting['showActionColumn'] : true" />
 
     @livewire('master.form-modal',
     [
