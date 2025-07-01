@@ -20,6 +20,12 @@ class UserController extends Controller
                 'type'      => 'text',
                 'rule'      => 'required|string|max:255'
             ],
+            'nik' => [
+                'name'      => 'NIK',
+                'type'      => 'text',
+                'rule'      => 'required|digits_between:16,17',
+                'isTable'   => 'invisible'
+            ],
             'email' => [
                 'name'      => 'Email',
                 'type'      => 'text',
@@ -49,7 +55,7 @@ class UserController extends Controller
         ];
         if (request()->ajax()) {
             $users = User::with('roles')
-                        ->select(['id', 'name', 'email'])
+                        ->select(['id', 'name', 'nik', 'email'])
                         ->when(request()->has('search') && request()->search['value'], function ($query) {
                             $searchValue = request()->search['value']; // Ambil query pencarian
                             $query->whereHas('roles', function ($query) use ($searchValue) {
@@ -58,6 +64,9 @@ class UserController extends Controller
                         })->get();
             return DataTables::of($users)
                 ->addIndexColumn()
+                ->editColumn('name', function ($row) {
+                    return $row->nik . '<br/>' . $row->name;
+                })
                 ->addColumn('role', function($row) {
                     return $row->roles->pluck('name')->map(function($role) {
                         return '<span class="badge bg-label-primary">' . $role . '</span>';
@@ -68,7 +77,7 @@ class UserController extends Controller
                     $frontButton = '<button class="btn btn-icon btn-text-info" data-bs-toggle="modal" data-bs-target="#modalRole" data-kt-action="edit_role" data-id="' . $id . '"><i class="tf-icons ti ti-settings scaleX-n1-rtl ti-xs"></i></button>';
                     return view('components.master.table-button', compact('id', 'frontButton'));
                 })
-                ->rawColumns(['action','role'])
+                ->rawColumns(['action','role','name'])
                 ->make(true);
         }
         return view('admin.user.index', compact('pageSetting'));
