@@ -31,8 +31,8 @@ class RetensiRecord extends Model
         return [
             self::STATUS_AKTIF => 'success',
             self::STATUS_BELUM_INAKTIF => 'info',
-            self::STATUS_INAKTIF => 'dark',
-            self::STATUS_BELUM_MUSNAH => 'warning',
+            self::STATUS_INAKTIF => 'warning',
+            self::STATUS_BELUM_MUSNAH => 'dark',
             self::STATUS_MUSNAH => 'danger'
         ];
     }
