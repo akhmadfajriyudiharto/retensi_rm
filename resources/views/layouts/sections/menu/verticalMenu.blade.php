@@ -24,6 +24,16 @@ $configData = Helper::appClasses();
 
   <ul class="menu-inner py-1">
     @foreach ($menuData[0]->menu as $menu)
+      @php
+        if(gettype($menu->slug) === 'array'){
+          $permissions = array_map(fn($permission) => $permission . '.view', $menu->slug);
+          $isShow = auth()->user()->hasAnyPermission($permissions);
+        }else{
+          $isShow = auth()->user()->can($menu->slug . '.view');
+        }
+      @endphp
+
+      @continue(!$isShow)
 
       {{-- adding active and open class if child is active --}}
 
