@@ -12,7 +12,8 @@ class SaksiModal extends Component
     public $saksies = [];
 
     public $saksi_id;
-    public $nik, $nip, $nama, $jabatan, $alamat;
+    // public $nik, $nip, $nama, $jabatan, $alamat;
+    public $nik, $nama, $jabatan;
 
     protected $listeners = ['editSaksi','deleteSaksi','kunciBA','bukaBA'];
 
@@ -20,10 +21,10 @@ class SaksiModal extends Component
     {
         return [
             'nik' => 'required|digits_between:16,17',
-            'nip' => 'nullable|digits_between:18,18',
+            // 'nip' => 'nullable|digits_between:18,18',
             'nama' => 'required|string|max:100',
             'jabatan' => 'required|string|max:50',
-            'alamat' => 'required|string|max:255',
+            // 'alamat' => 'required|string|max:255',
         ];
     }
 
@@ -41,7 +42,8 @@ class SaksiModal extends Component
 
     public function resetInput()
     {
-        $this->reset(['saksi_id', 'nik', 'nip', 'nama', 'jabatan', 'alamat']);
+        // $this->reset(['saksi_id', 'nik', 'nip', 'nama', 'jabatan', 'alamat']);
+        $this->reset(['saksi_id', 'nik', 'nama', 'jabatan']);
     }
 
     public function edit($id)
@@ -49,10 +51,10 @@ class SaksiModal extends Component
         $saksi = SaksiPemusnahan::findOrFail($id);
         $this->saksi_id = $saksi->id;
         $this->nik = $saksi->nik;
-        $this->nip = $saksi->nip;
+        // $this->nip = $saksi->nip;
         $this->nama = $saksi->nama;
         $this->jabatan = $saksi->jabatan;
-        $this->alamat = $saksi->alamat;
+        // $this->alamat = $saksi->alamat;
     }
 
     public function save()
@@ -67,10 +69,10 @@ class SaksiModal extends Component
         }
 
         $saksi->nik = $this->nik;
-        $saksi->nip = $this->nip;
+        // $saksi->nip = $this->nip;
         $saksi->nama = $this->nama;
         $saksi->jabatan = $this->jabatan;
-        $saksi->alamat = $this->alamat;
+        // $saksi->alamat = $this->alamat;
         $saksi->save();
 
         $this->dispatch('success', $this->saksi_id ? 'Saksi diperbarui.' : 'Saksi ditambahkan.');

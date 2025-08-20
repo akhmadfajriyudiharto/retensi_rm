@@ -27,31 +27,31 @@
                 @if ($beritaAcara->status == 'proses')
                 <form wire:submit.prevent="save">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>NIK</label>
                             <input wire:model="nik" class="form-control">
                             @error('nik') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
-                        <div class="col-md-3">
+                        {{-- <div class="col-md-3">
                             <label>NIP</label>
                             <input wire:model="nip" class="form-control">
                             @error('nip') <small class="text-danger">{{ $message }}</small> @enderror
-                        </div>
-                        <div class="col-md-3">
+                        </div> --}}
+                        <div class="col-md-4">
                             <label>Nama</label>
                             <input wire:model="nama" class="form-control">
                             @error('nama') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>Jabatan</label>
                             <input wire:model="jabatan" class="form-control">
                             @error('jabatan') <small class="text-danger">{{ $message }}</small> @enderror
                         </div>
-                        <div class="col-12 mt-2">
+                        {{-- <div class="col-12 mt-2">
                             <label>Alamat</label>
                             <textarea wire:model="alamat" class="form-control"></textarea>
                             @error('alamat') <small class="text-danger">{{ $message }}</small> @enderror
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="mt-3 text-end">
                         <button type="submit" class="btn btn-primary">Simpan</button>
@@ -65,10 +65,10 @@
                     <thead>
                         <tr>
                             <th>NIK</th>
-                            <th>NIP</th>
+                            {{-- <th>NIP</th> --}}
                             <th>Nama</th>
                             <th>Jabatan</th>
-                            <th>Alamat</th>
+                            {{-- <th>Alamat</th> --}}
                             @if ($beritaAcara->status == 'proses')
                             <th>Aksi</th>
                             @endif
@@ -78,10 +78,10 @@
                         @forelse($saksies as $saksi)
                             <tr>
                                 <td>{{ $saksi->nik }}</td>
-                                <td>{{ $saksi->nip }}</td>
+                                {{-- <td>{{ $saksi->nip }}</td> --}}
                                 <td>{{ $saksi->nama }}</td>
                                 <td>{{ $saksi->jabatan }}</td>
-                                <td>{{ $saksi->alamat }}</td>
+                                {{-- <td>{{ $saksi->alamat }}</td> --}}
                                 @if ($beritaAcara->status == 'proses')
                                 <td>
                                     <button wire:click="edit({{ $saksi->id }})" class="btn btn-sm btn-warning"><i class="tf-icons ti ti-edit scaleX-n1-rtl ti-xs"></i></button>
