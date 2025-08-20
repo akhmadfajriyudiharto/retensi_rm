@@ -17,10 +17,10 @@
                 <td width="30%">NIK</td>
                 <td>: {{$beritaAcara->nik_ketua}}</td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td width="30%">Alamat</td>
                 <td>: {{$beritaAcara->alamat_ketua}}</td>
-            </tr>
+            </tr> --}}
         </table>
         <div class="mt-3">
             Dengan disaksikan oleh:
@@ -39,12 +39,12 @@
                 <td>NIK</td>
                 <td>: {{$item->nik}}</td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td></td>
                 <td></td>
                 <td>Alamat</td>
                 <td>: {{$item->alamat}}</td>
-            </tr>
+            </tr> --}}
             @endforeach
         </table>
         <div class="mt-3">
@@ -57,52 +57,99 @@
 
         <table class="mt-5" width="100%">
             <tr>
-                <td width=35%>{{$beritaAcara->kota_pemusnahan}}, {{$tanggal->translatedFormat('d F Y')}}</td>
-                <td width=30%></td>
-                <td width=35%></td>
+                <td width={{$beritaAcara->saksi->count() >= 3 ? '30%' : '35%'}}>{{$beritaAcara->kota_pemusnahan}}, {{$tanggal->translatedFormat('d F Y')}}</td>
+                @if ($beritaAcara->saksi->count() >= 3)
+                    <td width=30%></td>
+                @endif
+                <td width={{$beritaAcara->saksi->count() >= 3 ? '10%' : '30%'}}></td>
+                <td width={{$beritaAcara->saksi->count() >= 3 ? '30%' : '35%'}}></td>
             </tr>
             <tr>
-                <td>&nbsp;</td>
+                <td colspan="{{$beritaAcara->saksi->count() >= 3 ? 2 : 1}}">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td style="text-align: center;">Saksi-saksi</td>
+                <td style="text-align: center;" colspan="{{$beritaAcara->saksi->count() >= 3 ? 2 : 1}}">Saksi-saksi</td>
                 <td></td>
                 <td style="text-align: center;">Yang menerima berita acara</td>
             </tr>
-            @foreach ($beritaAcara->saksi as $key => $item)
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>{{$key+1}}</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;">{{$item->nama}}</td>
-                    <td></td>
-                    <td style="text-align: center;">{{$key == 0 ? $beritaAcara->nama_ketua : ''}}</td>
-                </tr>
-            @endforeach
+            @php
+                $saksi = $beritaAcara->saksi;
+            @endphp
+            @if ($beritaAcara->saksi->count() >= 3)
+                @for ($i = 0; $i < $beritaAcara->saksi->count(); $i += 2)
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>{{$i+1}}</td>
+                        <td>{{$i+1 < $beritaAcara->saksi->count() ? $i+2 : ''}}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">{{$saksi[$i]->nama}}</td>
+                        <td style="text-align: center;">{{$i+1 < $beritaAcara->saksi->count() ? $saksi[$i+1]->nama : ''}}</td>
+                        <td></td>
+                        <td style="text-align: center;">{{$i == 0 ? $beritaAcara->nama_ketua : ''}}</td>
+                    </tr>
+                @endfor
+            @else
+                @foreach ($beritaAcara->saksi as $key => $item)
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>{{$key+1}}</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">{{$saksi[$key]->nama}}</td>
+                        <td></td>
+                        <td style="text-align: center;">{{$key == 0 ? $beritaAcara->nama_ketua : ''}}</td>
+                    </tr>
+                @endforeach
+            @endif
         </table>
     </div>
     <div style="page-break-before: always;">
