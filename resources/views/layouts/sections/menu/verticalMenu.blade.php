@@ -26,8 +26,9 @@ $configData = Helper::appClasses();
     @foreach ($menuData[0]->menu as $menu)
       @php
         if(gettype($menu->slug) === 'array'){
-          $permissions = array_map(fn($permission) => $permission . '.view', $menu->slug);
-          $isShow = auth()->user()->hasAnyPermission($permissions);
+        //   $permissions = array_map(fn($permission) => $permission . '.view', $menu->slug);
+          $permissions = ['admin.dokter.view','admin.pasien.view','admin.rekam-medis.view','admin.retensi.view','admin.pemusnahan.view'];
+          $isShow = auth()->user()->canany($permissions);
         }else{
           $isShow = auth()->user()->can($menu->slug . '.view');
         }
