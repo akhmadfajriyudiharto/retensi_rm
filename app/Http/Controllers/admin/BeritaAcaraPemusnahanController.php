@@ -36,23 +36,23 @@ class BeritaAcaraPemusnahanController extends Controller
                 'isTable'   => 'invisible'
             ],
             'nip_ketua' => [
-                'name'      => 'NIP Ketua',
+                'name'      => 'Nomor Induk Kependudukan',
                 'type'      => 'text',
                 'rule'      => 'nullable|digits_between:18,19',
                 'isTable'   => 'invisible'
             ],
             'nik_ketua' => [
-                'name'      => 'NIK Ketua',
+                'name'      => 'Nomor Induk Kepegawaian',
                 'type'      => 'text',
                 'rule'      => 'required|digits_between:16,17',
                 'isTable'   => 'invisible'
             ],
-            'alamat_ketua' => [
-                'name'      => 'Alamat Ketua',
-                'type'      => 'text',
-                'rule'      => 'required|string|max:255',
-                'isTable'   => 'invisible'
-            ],
+            // 'alamat_ketua' => [
+            //     'name'      => 'Alamat Ketua',
+            //     'type'      => 'text',
+            //     'rule'      => 'required|string|max:255',
+            //     'isTable'   => 'invisible'
+            // ],
             'kota_pemusnahan' => [
                 'name'      => 'Kota Pemusnahan',
                 'type'      => 'text',
@@ -100,7 +100,7 @@ class BeritaAcaraPemusnahanController extends Controller
                     return \Carbon\Carbon::parse($row->tanggal)->translatedFormat('d F Y');
                 })
                 ->editColumn('ketua', function ($row) {
-                    return 'NIK: ' . $row->nik_ketua . '<br/>NIP: ' . $row->nip_ketua . '<br/> Nama: ' . $row->nama_ketua . '<br/> Alamat: ' . $row->alamat_ketua;
+                    return 'NIK: ' . $row->nik_ketua . '<br/>NIP: ' . $row->nip_ketua . '<br/> Nama: ' . $row->nama_ketua;
                 })
                 ->editColumn('status', function ($row) {
                     $badge = ($row->status == 'proses' ? 'info' : ($row->status == 'dikunci' ? 'dark' : 'danger'));
